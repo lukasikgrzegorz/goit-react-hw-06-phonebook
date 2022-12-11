@@ -14,7 +14,9 @@ const ContactForm = () => {
     const form = e.currentTarget;
     const name = form.elements.name.value;
     const number = form.elements.number.value;
-    const isInBase = contacts.some(contact => contact.name === name);
+    const isInBase = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
     if (!isInBase) {
       dispatch(addContact(name, number));
       form.reset();
