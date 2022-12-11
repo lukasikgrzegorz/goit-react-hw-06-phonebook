@@ -1,19 +1,16 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import css from './App.module.css';
 import ContactForm from './components/ContactForm/ContactForm';
 import Filter from './components/Filter/Filter';
 import ContactList from './components/ContactList/ContactList';
+import { useSelector } from 'react-redux';
+import { getContacts } from 'redux/selectors';
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const contacts = useSelector(getContacts);
   const isMounted = useRef(false);
 
   const KEY = 'Contacts';
-
-  useEffect(() => {
-    const savedContacts = JSON.parse(localStorage.getItem(KEY));
-    savedContacts && setContacts([...savedContacts]);
-  }, []);
 
   useEffect(() => {
     if (isMounted.current) {

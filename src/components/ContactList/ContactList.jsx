@@ -13,8 +13,6 @@ const ContactList = () => {
 
   const handleDelete = e => {
     dispatch(deleteContact(e.target.id));
-    
-
   };
 
   return (

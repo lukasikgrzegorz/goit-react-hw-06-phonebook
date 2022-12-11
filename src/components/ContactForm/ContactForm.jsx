@@ -2,17 +2,25 @@ import React from 'react';
 import css from './ContactForm.module.css';
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
+import { useSelector } from 'react-redux';
+import { getContacts } from 'redux/selectors';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
     const name = form.elements.name.value;
     const number = form.elements.number.value;
-    dispatch(addContact(name, number));
-    form.reset();
+    const isInBase = contacts.some(contact => contact.name === name);
+    if (!isInBase) {
+      dispatch(addContact(name, number));
+      form.reset();
+    } else {
+      alert(`${name} is in use. Try another name.`);
+    }
   };
 
   return (
