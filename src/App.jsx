@@ -24,22 +24,6 @@ const App = () => {
     }
   }, [contacts]);
 
-  const checkContact = newContact => {
-    const isInBase = contacts.some(contact => contact.name === newContact.name);
-    return isInBase;
-  };
-
-  const addContact = newContact => {
-    const check = checkContact(newContact);
-    if (!check) {
-      let actualContacts = contacts;
-      actualContacts.push(newContact);
-      setContacts([...actualContacts]);
-    } else {
-      alert(`${newContact.name} is alerdy in contacts`);
-    }
-  };
-
   const changeFilterValue = e => {
     setFilter(e.target.value);
   };
@@ -54,7 +38,7 @@ const App = () => {
   return (
     <div className={css['container']}>
       <h1>Phonebook</h1>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm />
 
       <h2>Contacts</h2>
       <Filter changeHandler={changeFilterValue} />
