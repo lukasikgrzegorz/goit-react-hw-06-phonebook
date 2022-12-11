@@ -6,11 +6,11 @@ import ContactList from './components/ContactList/ContactList';
 import { useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
 
+const KEY = 'Contacts';
+
 const App = () => {
   const contacts = useSelector(getContacts);
   const isMounted = useRef(false);
-
-  const KEY = 'Contacts';
 
   useEffect(() => {
     if (isMounted.current) {
