@@ -6,7 +6,6 @@ import ContactList from './components/ContactList/ContactList';
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
-  const [filter, setFilter] = useState('');
   const isMounted = useRef(false);
 
   const KEY = 'Contacts';
@@ -24,29 +23,14 @@ const App = () => {
     }
   }, [contacts]);
 
-  const changeFilterValue = e => {
-    setFilter(e.target.value);
-  };
-
-  const deleteUser = e => {
-    const filteredContacts = contacts.filter(
-      contact => contact.id !== e.target.id
-    );
-    setContacts(filteredContacts);
-  };
-
   return (
     <div className={css['container']}>
       <h1>Phonebook</h1>
       <ContactForm />
 
       <h2>Contacts</h2>
-      <Filter changeHandler={changeFilterValue} />
-      <ContactList
-        filter={filter}
-        contacts={contacts}
-        deleteFunction={deleteUser}
-      />
+      <Filter />
+      <ContactList />
     </div>
   );
 };
